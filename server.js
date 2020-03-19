@@ -28,7 +28,15 @@ mongoose.connect(
 );
 //http://google.com - GET
 app.get("/", (request, response) => {
-  response.render("articles/index");
+  Article.find()
+    .then(articles => {
+      console.log(articles);
+      //{ articles: articles } \\ { articles }
+      response.render("articles/index", { articles });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 //create article routes
