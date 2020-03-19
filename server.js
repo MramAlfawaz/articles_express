@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const PORT = 4000;
 const expressLayouts = require("express-ejs-layouts");
+//models
+const Article = require("./models/Article");
 
 //---initial express
 const app = express();
@@ -36,8 +38,19 @@ app.get("/create", (request, response) => {
 
 app.post("/create", (request, response) => {
   console.log(request.body);
-  //   response.render("articles/create");
-  response.send("Post worked!!");
+  let article = new Article(request.body);
+
+  console.log(article);
+  //save article
+  article
+    .save()
+    .then(() => {
+      response.send("Post worked!!");
+    })
+    .catch(err => {
+      console.log(err);
+      response.send("Error!!!!!");
+    });
 });
 
 app.listen(PORT, () => console.log(`running on ${PORT}`));
