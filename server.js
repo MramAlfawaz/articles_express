@@ -5,10 +5,13 @@ const expressLayouts = require("express-ejs-layouts");
 
 //---initial express
 const app = express();
+//gets form data
+app.use(express.urlencoded({ extended: true }));
 /*
 look in views folder for a file named
 layout.ejs
 */
+
 app.use(expressLayouts);
 /* will tell nodejs to look in a folder
  called views for all ejs files */
@@ -23,11 +26,18 @@ mongoose.connect(
 );
 //http://google.com - GET
 app.get("/", (request, response) => {
-  response.render("index");
+  response.render("articles/index");
 });
 
-app.get("/a", (request, response) => {
-  response.render("another");
+//create article routes
+app.get("/create", (request, response) => {
+  response.render("articles/create");
+});
+
+app.post("/create", (request, response) => {
+  console.log(request.body);
+  //   response.render("articles/create");
+  response.send("Post worked!!");
 });
 
 app.listen(PORT, () => console.log(`running on ${PORT}`));
