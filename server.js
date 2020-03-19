@@ -3,11 +3,16 @@ const mongoose = require("mongoose");
 const PORT = 4000;
 const moment = require("moment");
 const expressLayouts = require("express-ejs-layouts");
+const methodOverride = require("method-override");
 //models
 const Article = require("./models/Article");
 
 //---initial express
 const app = express();
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride("_method"));
+
 //look for static files here(CSS, JS, Image, video, audio)
 app.use(express.static("public"));
 //gets form data

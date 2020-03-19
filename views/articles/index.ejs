@@ -6,7 +6,15 @@
     <!-- _id -->
     <a href="/article/<%= article._id %>"><h3><%= article.title %></h3></a>
     <div>Created on: <%= moment(article.createdAt).fromNow() %></div>
-    <div><a href="/article/<%= article._id %>/delete">Delete</a></div>
+    <div>
+      <!-- <a href="/article/<%= article._id %>/delete">Delete</a> -->
+      <form
+        method="POST"
+        action="/article/<%= article._id %>/delete?_method=DELETE"
+      >
+        <button type="submit">Delete resource</button>
+      </form>
+    </div>
   </div>
   <% }) %>
 </div>
