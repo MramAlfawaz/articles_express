@@ -1,9 +1,10 @@
 <h1>This is the home</h1>
+<a href="/create">Create Article</a>
 <div>
   <% articles.forEach(function(article){ %>
   <div>
-    <h3><%= article.title %></h3>
-    <%= article.content %>
+    <!-- _id -->
+    <a href="/article/<%= article._id %>"><h3><%= article.title %></h3></a>
     <div>Created on: <%= moment(article.createdAt).fromNow() %></div>
   </div>
   <% }) %>

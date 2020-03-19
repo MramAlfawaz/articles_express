@@ -64,4 +64,13 @@ app.post("/create", (request, response) => {
     });
 });
 
+app.get("/article/:id", (request, response) => {
+  //   console.log(request.params.id);
+  //   Article.find({_id: request.params.id })
+  Article.findById(request.params.id).then(article => {
+    //{article: article} || {article}
+    response.render("articles/show", { article });
+  });
+});
+
 app.listen(PORT, () => console.log(`running on ${PORT}`));
