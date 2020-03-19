@@ -5,4 +5,13 @@ const PORT = 4000;
 //---initial express
 const app = express();
 
+//--mongodb connection
+mongoose.connect(
+  "mongodb://localhost/articles",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log("mongodb connected!");
+  }
+);
+
 app.listen(PORT, () => console.log(`running on ${PORT}`));
