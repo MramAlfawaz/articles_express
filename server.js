@@ -4,6 +4,11 @@ const PORT = 4000;
 const moment = require("moment");
 const expressLayouts = require("express-ejs-layouts");
 const methodOverride = require("method-override");
+//GET - retrieve data
+//POST - send data
+//PUT/PATCH - updates
+//DELETE - removes
+
 //models
 const Article = require("./models/Article");
 
