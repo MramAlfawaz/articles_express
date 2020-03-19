@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const PORT = 4000;
+const moment = require("moment");
 const expressLayouts = require("express-ejs-layouts");
 //models
 const Article = require("./models/Article");
@@ -30,9 +31,10 @@ mongoose.connect(
 app.get("/", (request, response) => {
   Article.find()
     .then(articles => {
-      console.log(articles);
+      //   console.log(articles);
       //{ articles: articles } \\ { articles }
-      response.render("articles/index", { articles });
+      //{ moment: moment } \\ { moment }
+      response.render("articles/index", { articles, moment });
     })
     .catch(err => {
       console.log(err);
@@ -48,12 +50,13 @@ app.post("/create", (request, response) => {
   console.log(request.body);
   let article = new Article(request.body);
 
-  console.log(article);
+  //   console.log(article);
   //save article
   article
     .save()
     .then(() => {
-      response.send("Post worked!!");
+      //   response.send("Post worked!!");
+      response.redirect("/");
     })
     .catch(err => {
       console.log(err);

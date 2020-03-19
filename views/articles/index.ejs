@@ -2,7 +2,9 @@
 <div>
   <% articles.forEach(function(article){ %>
   <div>
-    <%= article.title %>
+    <h3><%= article.title %></h3>
+    <%= article.content %>
+    <div>Created on: <%= moment(article.createdAt).fromNow() %></div>
   </div>
   <% }) %>
 </div>
