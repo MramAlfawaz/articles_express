@@ -8,6 +8,8 @@ const Article = require("./models/Article");
 
 //---initial express
 const app = express();
+//look for static files here(CSS, JS, Image, video, audio)
+app.use(express.static("public"));
 //gets form data
 app.use(express.urlencoded({ extended: true }));
 /*
@@ -69,7 +71,16 @@ app.get("/article/:id", (request, response) => {
   //   Article.find({_id: request.params.id })
   Article.findById(request.params.id).then(article => {
     //{article: article} || {article}
-    response.render("articles/show", { article });
+    response.render("articles/show", { article, moment });
+  });
+});
+
+app.delete("/article/:id/delete", (request, response) => {
+  //   console.log(request.params.id);
+  //   Article.find({_id: request.params.id })
+  Article.findByIdAndDelete(request.params.id).then(article => {
+    //{article: article} || {article}
+    response.redirect("/");
   });
 });
 
