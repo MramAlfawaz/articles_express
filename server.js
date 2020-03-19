@@ -13,5 +13,9 @@ mongoose.connect(
     console.log("mongodb connected!");
   }
 );
+//http://google.com - GET
+app.get("/", (request, response) => {
+  response.send("This is the Home route");
+});
 
 app.listen(PORT, () => console.log(`running on ${PORT}`));
